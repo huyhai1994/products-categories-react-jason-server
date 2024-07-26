@@ -1,6 +1,7 @@
 import React from 'react'
 import {useParams} from "react-router-dom";
 import * as Yup from "yup";
+import {useFormik} from "formik";
 
 const ProductEdit = () => {
     const {id} = useParams();
@@ -10,6 +11,20 @@ const ProductEdit = () => {
         date: Yup.date().required("Date is required"),
         category: Yup.string().required("Category is required"),
         quantity: Yup.number().required("Quantity is required")
+    })
+    const editForm = useFormik({
+        initialValues: {
+            name: '',
+            price: '',
+            date: '',
+            category: '',
+            quantity: ''
+        },
+        validationSchema: editSchema,
+        onSubmit: (values) => {
+            // Submit form data
+            console.log(values)
+        }
     })
     return (<div className='container'>
         id: {id}
