@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Table} from 'react-bootstrap';
+import {Button, Table} from 'react-bootstrap';
 import userService from "../../../services/user.service";
 
 const ProductList = () => {
@@ -34,7 +34,10 @@ const ProductList = () => {
                     <td className="text-center">{product.category.name}</td>
                     <td className="text-center">{product.date}</td>
                     <td className="text-center">{product.quantity}</td>
-                    <td className="text-center">Delete | Edit</td>
+                    <td className="text-center">
+                        <Button className='btn btn-danger'>Delete</Button>
+                        <Button className='btn btn-primary'>Edit</Button>
+                    </td>
                 </tr>))}
             </tbody>
         </Table>
