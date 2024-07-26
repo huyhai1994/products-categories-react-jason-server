@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Table} from 'react-bootstrap';
-import userService from "../../../services/user.service";
+import userService from "../../../services/product.service";
 import {toast} from "react-toastify";
 
 const ProductList = () => {
@@ -36,19 +36,18 @@ const ProductList = () => {
             </tr>
             </thead>
             <tbody>
-            {products.map((product, index) => (
-                <tr className={`table-row ${product.active ? "" : "inactive-row"}`} key={product.id}>
-                    <td className="text-center" style={{fontWeight: 'bold'}}>{index + 1}</td>
-                    <td className="text-center">{product.name}</td>
-                    <td className="text-center">{product.price}</td>
-                    <td className="text-center">{product.category.name}</td>
-                    <td className="text-center">{product.date}</td>
-                    <td className="text-center">{product.quantity}</td>
-                    <td className="text-center">
-                        <Button className='btn btn-danger' onClick={() => handleDelete(product.id)}>Delete</Button>
-                        <Button className='btn btn-primary'>Edit</Button>
-                    </td>
-                </tr>))}
+            {products.map((product, index) => (<tr className="table-row" key={product.id}>
+                <td className="text-center" style={{fontWeight: 'bold'}}>{index + 1}</td>
+                <td className="text-center">{product.name}</td>
+                <td className="text-center">{product.price}</td>
+                <td className="text-center">{product.category.name}</td>
+                <td className="text-center">{product.date}</td>
+                <td className="text-center">{product.quantity}</td>
+                <td className="text-center">
+                    <Button className='btn btn-danger' onClick={() => handleDelete(product.id)}>Delete</Button>
+                    <Button className='btn btn-primary' href="/product-edit">Edit</Button>
+                </td>
+            </tr>))}
             </tbody>
         </Table>
     </div>);
