@@ -16,6 +16,7 @@ const ProductList = () => {
 
     const handleDelete = (productId) => {
         userService.deleteProduct(productId).then(() => {
+            alert('Product deleted successfully');
             toast.success('Product deleted successfully');
             setProducts(products.filter(product => product.id !== productId));
         }).catch(error => {
@@ -26,6 +27,7 @@ const ProductList = () => {
     return (<div className="container">
         <h4 className="card-title text-center my-5">Product List</h4>
         <div className='table-responsive'>
+            <Button className='btn btn-primary float-end' onClick={() => navigate('/product-add')}>Add Product</Button>
             <Table striped bordered hover>
                 <thead>
                 <tr>

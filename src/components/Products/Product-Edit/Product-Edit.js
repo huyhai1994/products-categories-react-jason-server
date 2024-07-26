@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import ProductService from "../../../services/product.service";
@@ -7,6 +7,7 @@ import CategoryService from "../../../services/category.service";
 
 const ProductEdit = () => {
     const {id} = useParams();
+    const navigate = useNavigate();
     const [product, setProduct] = React.useState(null);
     const [categories, setCategories] = React.useState([]);
 
@@ -29,6 +30,7 @@ const ProductEdit = () => {
             const updatedValues = {...values, categoryId: category.id};
             ProductService.updateProduct(id, updatedValues).then(response => {
                 alert("update succeeded");
+                navigate('/');
             });
         }
     });
