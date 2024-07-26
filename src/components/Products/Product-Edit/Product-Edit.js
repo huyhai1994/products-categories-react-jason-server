@@ -25,12 +25,13 @@ const ProductEdit = () => {
         initialValues: {
             name: '', price: '', date: '', category: '', quantity: ''
         }, validationSchema: editSchema, onSubmit: (values) => {
-            ProductService.updateProduct(id, values).then(response => {
-
-            })
-
+            const category = categories.find(cat => cat.name === values.category);
+            const updatedValues = {...values, categoryId: category.id};
+            ProductService.updateProduct(id, updatedValues).then(response => {
+                alert("update succeeded");
+            });
         }
-    })
+    });
     useEffect(() => {
         CategoryService.getAllCategories().then(response => {
             setCategories(response.data);
@@ -52,7 +53,6 @@ const ProductEdit = () => {
             });
     }, [id])
     return (<div className='container'>
-        id: {id}
         <h1 className='text-center'>Edit user</h1>
         <form className='border p-3 rounded-3' onSubmit={editForm.handleSubmit}>
             <div className="mb-3">
