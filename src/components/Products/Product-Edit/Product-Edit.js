@@ -24,6 +24,7 @@ const ProductEdit = () => {
 
         userService.getProductById(id).then(response => {
             const product = response.data;
+            console.log(product);
             setInitialValues({
                 name: product.name,
                 price: product.price,

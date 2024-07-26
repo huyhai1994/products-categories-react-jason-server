@@ -11,7 +11,7 @@ class ProductService {
     }
 
     static async getProductById(id) {
-        return await axios.get(PRODUCT_API_URL + '/' + id + '?_embed=category');
+        return await axios.get(PRODUCT_API_URL + '/' + id);
     }
 
     static async createProduct(product) {
