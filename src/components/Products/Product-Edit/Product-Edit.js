@@ -18,7 +18,7 @@ const ProductEdit = () => {
         quantity: Yup.number().required("Quantity is required")
     })
     const getCategoryNameById = (categoryId, categories) => {
-        const category = categories.find(elementInCategories => elementInCategories.id === categoryId);
+        const category = categories.find(cat => cat.id === categoryId);
         return category ? category.name : '';
     };
     const editForm = useFormik({
@@ -36,12 +36,12 @@ const ProductEdit = () => {
 
         ProductService.getProductById(id)
             .then(response => {
-                setProduct(response.data.name);
+                setProduct(response.data);
                 editForm.setValues({
                     name: response.data.name,
                     price: response.data.price,
                     date: response.data.date,
-                    category: getCategoryNameById(response.data.categoryId),
+                    category: getCategoryNameById(response.data.categoryId, categories),
                     quantity: response.data.quantity
                 });
             })
@@ -55,7 +55,7 @@ const ProductEdit = () => {
         <form className='border p-3 rounded-3'>
             <div className="mb-3">
                 <label htmlFor="exampleInputName" className="form-label">Name</label>
-                <input type="text" name="name" className="form-control"
+                <input type="text" name="name" value={editForm.values.name} className="form-control"
                        id="exampleInputName"
                 />
             </div>
