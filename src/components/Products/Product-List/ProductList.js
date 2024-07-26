@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Table} from 'react-bootstrap';
+import userService from "../../../services/user.service";
+
 
 const ProductList = () => {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        userService.getAllProducts().then(response => {
+            setUsers(response.data);
+        })
+    })
+
     return (<div className="container">
         <h4 className="card-title text-center my-5 ">Product List</h4>
         <Table striped bordered hover>
