@@ -25,8 +25,10 @@ const ProductEdit = () => {
         initialValues: {
             name: '', price: '', date: '', category: '', quantity: ''
         }, validationSchema: editSchema, onSubmit: (values) => {
+            ProductService.updateProduct(id, values).then(response => {
 
-            console.log(values)
+            })
+
         }
     })
     useEffect(() => {
