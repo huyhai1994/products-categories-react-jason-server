@@ -1,11 +1,15 @@
 import './App.css';
+import {Route, Routes} from "react-router-dom";
 import ProductList from "./components/Products/Product-List/ProductList";
 
 function App() {
-    return (<div>
-        <h1>Welcome to React App</h1>
-        <ProductList/>
-    </div>);
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<ProductList/>}/>
+            </Routes>
+        </>
+    );
 }
 
 export default App;

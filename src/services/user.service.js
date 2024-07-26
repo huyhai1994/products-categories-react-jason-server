@@ -3,7 +3,7 @@ import axios from "axios";
 
 class ProductService {
     static async getAllProducts() {
-        return await axios.get(API_URL + '?_embed=category');
+        return await axios.get(API_URL+'?_embed=category');
     }
 }
 

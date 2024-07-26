@@ -9,7 +9,7 @@ const ProductList = () => {
         userService.getAllProducts().then(response => {
             setProducts(response.data);
         });
-    }, []); // Added dependency array to useEffect to avoid infinite loop
+    }, []);
 
     return (<div className="container">
         <h4 className="card-title text-center my-5">Product List</h4>
