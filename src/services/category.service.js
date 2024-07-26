@@ -1,5 +1,5 @@
 import axios from "axios";
-import {CATEGORY_API_URL} from "./config/backend.config";
+import {CATEGORY_API_URL} from "../config/backend.config";
 
 
 class CategoryService {
