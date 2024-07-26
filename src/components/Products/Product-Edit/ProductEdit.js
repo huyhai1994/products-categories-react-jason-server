@@ -55,46 +55,80 @@ const ProductEdit = () => {
             });
     }, [id])
     return (<div className='container'>
-        <h1 className='text-center'>Edit user</h1>
-        <form className='border p-3 rounded-3' onSubmit={editForm.handleSubmit}>
+        <h1
+            className='text-center'>Edit user</h1>
+        <form
+            className='border p-3 rounded-3'
+            onSubmit={editForm.handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="exampleInputName" className="form-label">Name</label>
-                <input type="text" name="name" value={editForm.values.name} onChange={editForm.handleChange}
-                       className="form-control"
-                       id="exampleInputName"
+                <input
+                    type="text"
+                    name="name"
+                    value={editForm.values.name}
+                    onChange={editForm.handleChange}
+                    className="form-control"
+                    id="exampleInputName"
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="price" className="form-label">Price</label>
-                <input type="number" name="price" value={editForm.values.price} className="form-control"
-                       onChange={editForm.handleChange}
-                       id="price"
+                <label
+                    htmlFor="price"
+                    className="form-label">Price</label>
+                <input
+                    type="number"
+                    name="price"
+                    value={editForm.values.price}
+                    className="form-control"
+                    onChange={editForm.handleChange}
+                    id="price"
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="quantity" className="form-label">Date</label>
-                <input type="date" name="date" className="form-control" onChange={editForm.handleChange}
-                       value={editForm.values.date} id="quantity"
+                <label
+                    htmlFor="quantity"
+                    className="form-label">Date</label>
+                <input
+                    type="date"
+                    name="date"
+                    className="form-control"
+                    onChange={editForm.handleChange}
+                    value={editForm.values.date}
+                    id="quantity"
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="quantity" className="form-label">Quantity</label>
-                <input type="number" name="quantity" className="form-control" onChange={editForm.handleChange}
-                       value={editForm.values.quantity}
-                       id="quantity"
+                <label
+                    htmlFor="quantity" className="form-label">Quantity</label>
+                <input
+                    type="number"
+                    name="quantity"
+                    className="form-control"
+                    onChange={editForm.handleChange}
+                    value={editForm.values.quantity}
+                    id="quantity"
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="category" className="form-label">Category</label>
-                <select name="category" className="form-control" id="category" value={editForm.values.category}
-                        onChange={editForm.handleChange}>
+                <label
+                    htmlFor="category" className="form-label">Category</label>
+                <select
+                    name="category"
+                    className="form-control"
+                    id="category"
+                    value={editForm.values.category}
+                    onChange={editForm.handleChange}>
                     <option value="">Select Category</option>
-                    {categories.map(category => (<option key={category.id} value={category.name}>
-                        {category.name}
-                    </option>))}
+                    {categories.map(category => (
+                        <option key={category.id} value={category.name}>
+                            {category.name}
+                        </option>))}
                 </select>
             </div>
-            <button type="submit" className="btn btn-primary w-100">Submit</button>
+            <button
+                type="submit"
+                className="btn btn-primary w-100">Submit
+            </button>
         </form>
     </div>)
 }

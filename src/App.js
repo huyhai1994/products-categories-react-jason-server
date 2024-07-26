@@ -2,7 +2,7 @@ import './App.css';
 import {Route, Routes} from "react-router-dom";
 import ProductList from "./components/Products/Product-List/ProductList";
 import ProductAdd from "./components/Products/Product-Add/ProductAdd";
-import ProductEdit from "./components/Products/Product-Edit/Product-Edit";
+import ProductEdit from "./components/Products/Product-Edit/ProductEdit";
 import {ToastContainer} from "react-toastify";
 
 function App() {

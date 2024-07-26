@@ -15,13 +15,14 @@ const ProductList = () => {
     }, []);
 
     const handleDelete = (productId) => {
-        userService.deleteProduct(productId).then(() => {
-            alert('Product deleted successfully');
-            toast.success('Product deleted successfully');
-            setProducts(products.filter(product => product.id !== productId));
-        }).catch(error => {
-            toast.error('Failed to delete product');
-        });
+        if (window.confirm('Are you sure you want to delete this product?')) {
+            userService.deleteProduct(productId).then(() => {
+                toast.success('Product deleted successfully');
+                setProducts(products.filter(product => product.id !== productId));
+            }).catch(error => {
+                toast.error('Failed to delete product');
+            });
+        }
     }
 
     return (<div className="container">
