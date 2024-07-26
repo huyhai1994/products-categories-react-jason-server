@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useParams} from "react-router-dom";
 import * as Yup from "yup";
 import {useFormik} from "formik";
+import ProductService from "../../../services/product.service";
+import CategoryService from "../../../services/category.service";
 
 const ProductEdit = () => {
     const {id} = useParams();
+    const [product, setProduct] = React.useState(null);
+    const [categories, setCategories] = React.useState([]);
+
     const editSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
         price: Yup.number().required("Price is required"),
@@ -14,18 +19,34 @@ const ProductEdit = () => {
     })
     const editForm = useFormik({
         initialValues: {
-            name: '',
-            price: '',
-            date: '',
-            category: '',
-            quantity: ''
-        },
-        validationSchema: editSchema,
-        onSubmit: (values) => {
+            name: '', price: '', date: '', category: '', quantity: ''
+        }, validationSchema: editSchema, onSubmit: (values) => {
             // Submit form data
             console.log(values)
         }
     })
+    useEffect(() => {
+        CategoryService.getAllCategories().then(response => {
+            setCategories(response.data);
+            console.log("this is at useEffect  category" + response.data[0].name);
+        })
+
+        ProductService.getProductById(id)
+            .then(response => {
+                setProduct(response.data.name);
+                console.log("this is at useEffect  product-edit" + response.data.category);
+                editForm.setValues({
+                    name: response.data.name,
+                    price: response.data.price,
+                    date: response.data.date,
+                    category: response.data.category,
+                    quantity: response.data.quantity
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching product: ', error);
+            });
+    }, [id])
     return (<div className='container'>
         id: {id}
         <h1 className='text-center'>Edit user</h1>
