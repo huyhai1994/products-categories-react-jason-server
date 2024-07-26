@@ -17,6 +17,10 @@ const ProductEdit = () => {
         category: Yup.string().required("Category is required"),
         quantity: Yup.number().required("Quantity is required")
     })
+    const getCategoryNameById = (categoryId, categories) => {
+        const category = categories.find(elementInCategories => elementInCategories.id === categoryId);
+        return category ? category.name : '';
+    };
     const editForm = useFormik({
         initialValues: {
             name: '', price: '', date: '', category: '', quantity: ''
@@ -28,18 +32,16 @@ const ProductEdit = () => {
     useEffect(() => {
         CategoryService.getAllCategories().then(response => {
             setCategories(response.data);
-            console.log("this is at useEffect  category" + response.data[0].name);
         })
 
         ProductService.getProductById(id)
             .then(response => {
                 setProduct(response.data.name);
-                console.log("this is at useEffect  product-edit" + response.data.category);
                 editForm.setValues({
                     name: response.data.name,
                     price: response.data.price,
                     date: response.data.date,
-                    category: response.data.category,
+                    category: getCategoryNameById(response.data.categoryId),
                     quantity: response.data.quantity
                 });
             })
