@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Table} from 'react-bootstrap';
 import userService from "../../../services/user.service";
+import {toast} from "react-toastify";
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -10,6 +11,15 @@ const ProductList = () => {
             setProducts(response.data);
         });
     }, []);
+
+    const handleDelete = (productId) => {
+        userService.deleteProduct(productId).then(() => {
+            toast.success('Product deleted successfully');
+            setProducts(products.filter(product => product.id !== productId));
+        }).catch(error => {
+            toast.error('Failed to delete product');
+        });
+    }
 
     return (<div className="container">
         <h4 className="card-title text-center my-5">Product List</h4>
@@ -35,7 +45,7 @@ const ProductList = () => {
                     <td className="text-center">{product.date}</td>
                     <td className="text-center">{product.quantity}</td>
                     <td className="text-center">
-                        <Button className='btn btn-danger'>Delete</Button>
+                        <Button className='btn btn-danger' onClick={() => handleDelete(product.id)}>Delete</Button>
                         <Button className='btn btn-primary'>Edit</Button>
                     </td>
                 </tr>))}
