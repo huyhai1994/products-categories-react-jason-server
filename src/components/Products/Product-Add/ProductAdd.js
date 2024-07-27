@@ -57,9 +57,8 @@ const ProductAdd = () => {
                     onChange={formik.handleChange}
                     className="form-control"
                     id="name"
-                    isInvalid={!!formik.errors.name}
                 />
-                {formik.errors.name && <div className="invalid-feedback">{formik.errors.name}</div>}
+                {formik.errors.name && <div className="text-danger">{formik.errors.name}</div>}
             </div>
             <div className="mb-3">
                 <label htmlFor="price" className="form-label">Price</label>
@@ -70,9 +69,8 @@ const ProductAdd = () => {
                     onChange={formik.handleChange}
                     className="form-control"
                     id="price"
-                    isInvalid={!!formik.errors.price}
                 />
-                {formik.errors.price && <div className="invalid-feedback">{formik.errors.price}</div>}
+                {formik.errors.price && <div className="text-danger">{formik.errors.price}</div>}
             </div>
             <div className="mb-3">
                 <label htmlFor="category" className="form-label">Category</label>
@@ -82,14 +80,13 @@ const ProductAdd = () => {
                     onChange={formik.handleChange}
                     className="form-control"
                     id="category"
-                    isInvalid={!!formik.errors.category}
                 >
                     <option value="">Select Category</option>
                     {categories.map(category => (<option key={category.id} value={category.name}>
                         {category.name}
                     </option>))}
                 </select>
-                {formik.errors.category && <div className="invalid-feedback">{formik.errors.category}</div>}
+                {formik.errors.category && <div className="text-danger">{formik.errors.category}</div>}
             </div>
             <div className="mb-3">
                 <label htmlFor="date" className="form-label">Date</label>
@@ -100,9 +97,9 @@ const ProductAdd = () => {
                     onChange={formik.handleChange}
                     className="form-control"
                     id="date"
-                    isInvalid={!!formik.errors.date}
+                    min={new Date().toISOString().split("T")[0]} // This sets the minimum date to today
                 />
-                {formik.errors.date && <div className="invalid-feedback">{formik.errors.date}</div>}
+                {formik.errors.date && <div className="text-danger">{formik.errors.date}</div>}
             </div>
             <div className="mb-3">
                 <label htmlFor="quantity" className="form-label">Quantity</label>
@@ -113,9 +110,8 @@ const ProductAdd = () => {
                     onChange={formik.handleChange}
                     className="form-control"
                     id="quantity"
-                    isInvalid={!!formik.errors.quantity}
                 />
-                {formik.errors.quantity && <div className="invalid-feedback">{formik.errors.quantity}</div>}
+                {formik.errors.quantity && <div className="text-danger">{formik.errors.quantity}</div>}
             </div>
             <button type="submit" className="btn btn-primary w-100" disabled={formik.isSubmitting}>
                 Add Product
