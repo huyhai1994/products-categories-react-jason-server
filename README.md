@@ -16,4 +16,8 @@
    npm i --save @fortawesome/fontawesome-svg-core
    npm install --save @fortawesome/free-solid-svg-icons
    npm install --save @fortawesome/react-fontawesome
-7. npm i react-router-dom   
+7. React Router to navigate between components
+   npm i react-router-dom
+
+### Deploying server (Vercel)
+link: https://products-categories-react-jason-server.vercel.app/

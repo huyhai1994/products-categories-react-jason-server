@@ -1,0 +1,18 @@
+thead tr th {
+    text-align: left;
+}
+
+tbody tr td {
+    text-align: left;
+    padding-right: 10px;
+}
+
+tbody tr td.number {
+    text-align: right;
+}
+
+.__action-button-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

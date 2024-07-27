@@ -3,6 +3,9 @@ import {Button, Pagination, Table} from 'react-bootstrap';
 import userService from "../../../services/product.service";
 import {toast} from "react-toastify";
 import {useNavigate} from 'react-router-dom';
+import './ProductList.css'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faPen, faTrash} from '@fortawesome/free-solid-svg-icons';
 
 const ProductList = () => {
     const [products, setProducts] = useState([]);
@@ -37,30 +40,33 @@ const ProductList = () => {
         <h4 className="card-title text-center my-5">Product List</h4>
         <div className='table-responsive'>
             <Button className='btn btn-primary float-end' onClick={() => navigate('/product-add')}>Add Product</Button>
-            <Table striped bordered hover>
+            <Table dark striped bordered hover>
                 <thead>
                 <tr>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>#</th>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>Name</th>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>Price</th>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>Category</th>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>Date</th>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>Quantity</th>
-                    <th className="text-center" style={{fontWeight: 'bold'}}>Action</th>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                {currentProducts.map((product, index) => (<tr className="table-row" key={product.id}>
-                    <td className="text-center" style={{fontWeight: 'bold'}}>{indexOfFirstProduct + index + 1}</td>
-                    <td className="text-center">{product.name}</td>
-                    <td className="text-center">{product.price}</td>
-                    <td className="text-center">{product.category.name}</td>
-                    <td className="text-center">{product.date}</td>
-                    <td className="text-center">{product.quantity}</td>
-                    <td className="text-center">
-                        <Button className='btn btn-danger' onClick={() => handleDelete(product.id)}>Delete</Button>
-                        <Button className='btn btn-primary'
-                                onClick={() => navigate('/product-edit/' + product.id)}>Edit</Button>
+                {currentProducts.map((product, index) => (<tr key={product.id}>
+                    <td className="number">{indexOfFirstProduct + index + 1}</td>
+                    <td>{product.name}</td>
+                    <td className="number">{product.price}</td>
+                    <td>{product.category.name}</td>
+                    <td>{product.date}</td>
+                    <td className="number">{product.quantity}</td>
+                    <td className="__action-button-center">
+                        <Button className='btn btn-danger' onClick={() => handleDelete(product.id)}>
+                            <FontAwesomeIcon icon={faTrash}/>
+                        </Button>
+                        <Button className='btn btn-primary' onClick={() => navigate('/product-edit/' + product.id)}>
+                            <FontAwesomeIcon icon={faPen}/>
+                        </Button>
                     </td>
                 </tr>))}
                 </tbody>
